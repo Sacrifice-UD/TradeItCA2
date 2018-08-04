@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private HomeFragment homeFragment;
     private StoreFragment storeFragment;
-    private NotificationFragment notificationFragment;
+    private PostFragment postFragment;
     private AccountFragment accountFragment;
 
     @Override
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         homeFragment = new HomeFragment();
         storeFragment = new StoreFragment();
-        notificationFragment = new NotificationFragment();
+        postFragment = new PostFragment();
         accountFragment = new AccountFragment();
 
         setFragment(homeFragment);
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.nav_notif:
                         mMainNav.setItemBackgroundResource(R.color.colorAccent);
-                        setFragment(notificationFragment);
+                        setFragment(postFragment);
                         return true;
 
                     case R.id.nav_account:

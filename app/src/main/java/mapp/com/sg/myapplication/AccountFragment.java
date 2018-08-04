@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
@@ -28,11 +30,12 @@ import static android.support.constraint.Constraints.TAG;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AccountFragment extends Fragment{
+public class AccountFragment extends Fragment implements NameDialog.NameDialogListener{
 
 
     Button btnChangePassword, btnChangeName, btnSignOut;
     TextView textViewName;
+    DatabaseReference databaseReference;
     FirebaseAuth.AuthStateListener mAuthListener;
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -54,7 +57,6 @@ public class AccountFragment extends Fragment{
         btnChangeName = (Button) view.findViewById(R.id.btnChangeName);
         textViewName = (TextView) view.findViewById(R.id.textViewName);
 
-        //Showing the Name of the User
         textViewName.setText(user.getDisplayName());
 
         //Signing out
@@ -66,6 +68,7 @@ public class AccountFragment extends Fragment{
             public void onClick(View v) {
                 openDialog();
             }
+
         });
 
 
@@ -77,13 +80,13 @@ public class AccountFragment extends Fragment{
                 FirebaseAuth.getInstance().signOut();
             }
         });
-
         return view;
     }
 
     public void openDialog() {
+        Log.d(TAG, "onClick: opening dialog to change name");
         NameDialog nameDialog = new NameDialog();
-        nameDialog.show(getFragmentManager(), "name dialog");
+        nameDialog.show(getFragmentManager(), "Change Name");
         nameDialog.setTargetFragment(AccountFragment.this, 1);
     }
 
@@ -109,7 +112,9 @@ public class AccountFragment extends Fragment{
 
 
     private void changeName() {
-
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        mAuth.getCurrentUser();
+        databaseReference.child(user.getUid()).setValue(userInformation.class);
     }
 
 
@@ -117,7 +122,6 @@ public class AccountFragment extends Fragment{
     public void onStart() {
         super.onStart();
         FirebaseAuth.getInstance().addAuthStateListener(mAuthListener);
-        NameDialog nameDialog = new NameDialog();
     }
 
     @Override
@@ -126,5 +130,11 @@ public class AccountFragment extends Fragment{
         if(mAuthListener != null) {
             FirebaseAuth.getInstance().removeAuthStateListener(mAuthListener);
         }
+    }
+
+    @Override
+    public void applyTexts(String name) {
+        Log.d(TAG, "applyTexts: setting the name");
+        textViewName.setText(name);
     }
 }

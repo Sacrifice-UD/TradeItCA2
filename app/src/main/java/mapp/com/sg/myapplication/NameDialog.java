@@ -18,9 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class NameDialog extends AppCompatDialogFragment {
 
-    EditText editTextName, editTextAge;
-    DatabaseReference databaseReference;
-    FirebaseAuth mAuth;
+    EditText editTextName;
+    NameDialogListener listener;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -35,11 +34,9 @@ public class NameDialog extends AppCompatDialogFragment {
 
         //initializing Views
         editTextName = view.findViewById(R.id.editTextEditName);
-        editTextAge = view.findViewById(R.id.editTextEditAge);
-        mAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        builder.setView(view).setTitle("Change Information")
+        builder.setView(view)
+                .setTitle("Change Information")
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
@@ -49,23 +46,35 @@ public class NameDialog extends AppCompatDialogFragment {
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        FirebaseUser user = mAuth.getCurrentUser();
                         String name = editTextName.getText().toString();
-                        String age = editTextAge.getText().toString();
-                        final userInformation userinformation = new userInformation(name,age);
+
 
                         if (name.isEmpty()) {
                             editTextName.setError("Name required");
                             editTextName.requestFocus();
                             return;
                         }
-
-                        databaseReference.child(user.getUid()).setValue(userInformation.class);
+                        listener.applyTexts(name);
                     }
                 });
 
 
         //return the dialog
         return builder.create();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        try {
+            listener = (NameDialogListener) getTargetFragment();
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+            + "must implement NameDialogListener");
+        }
+        super.onAttach(context);
+    }
+
+    public interface NameDialogListener{
+        void applyTexts(String name);
     }
 }
