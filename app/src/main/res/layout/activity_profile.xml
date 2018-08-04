@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/toolbar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/colorPrimary" />
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<ProgressBar
+			android:id="@+id/progressBar"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:layout_centerVertical="true"
+			android:visibility="gone" />
+
+	</RelativeLayout>
+
+	<TextView
+		android:id="@+id/textViewWelcome"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="Please Enter your Display Name and Age"
+		android:textSize="18sp"
+		android:textAlignment="center"
+		android:layout_margin="20dp"/>
+
+	<EditText
+		android:id="@+id/editTextDisplayName"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:hint="Enter Display Name"
+		android:layout_margin="10dp"/>
+
+	<EditText
+		android:id="@+id/editTextAge"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:hint="Enter Age"
+		android:layout_margin="10dp"/>
+
+	<Button
+		android:id="@+id/btnSave"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:layout_marginTop="25dp"
+		android:background="@drawable/bluebox"
+		android:textColor="@android:color/white"
+		android:textStyle="bold"
+		android:textSize="18sp"
+		android:paddingLeft="50dp"
+		android:paddingRight="50dp"
+		android:text="Submit"
+		android:textAllCaps="false" />
+
+
+</LinearLayout>

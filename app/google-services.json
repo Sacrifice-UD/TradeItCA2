@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "344755288743",
+    "firebase_url": "https://tradeitca2.firebaseio.com",
+    "project_id": "tradeitca2",
+    "storage_bucket": "tradeitca2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:344755288743:android:654056703211d6ee",
+        "android_client_info": {
+          "package_name": "mapp.com.sg.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "344755288743-hg4jg1uff58ma04s04h3shk7q6j5b08q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mapp.com.sg.myapplication",
+            "certificate_hash": "1a6004711d81047a5a05e061b06365292d99e2da"
+          }
+        },
+        {
+          "client_id": "344755288743-1qd69u8kaemgthevk14bgqeo41o7gbba.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBovei6YLHb3xqgEttexLaUuEBybvxlyJE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "344755288743-1qd69u8kaemgthevk14bgqeo41o7gbba.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
