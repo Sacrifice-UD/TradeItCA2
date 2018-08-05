@@ -6,12 +6,22 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PostFragment extends Fragment {
+
+    //widgets
+    private ImageView mPostImage;
+    private EditText mTitle, mDescription, mFor, mCountry, mPhoneNumber, mCity, mContactEmail;
+    private Button mPost;
+    private ProgressBar mProgressBar;
 
 
     public PostFragment() {
