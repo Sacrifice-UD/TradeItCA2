@@ -1,7 +1,6 @@
 package mapp.com.sg.myapplication;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -73,7 +72,6 @@ public class Profile extends AppCompatActivity {
 
     private void loadUserInformation() {
         FirebaseUser user = mAuth.getCurrentUser();
-        String displayName = user.getDisplayName();
 
         if (user != null) {
             if (user.getDisplayName() != null) {
@@ -87,6 +85,7 @@ public class Profile extends AppCompatActivity {
         String name = editTextName.getText().toString();
         String age = editTextAge.getText().toString();
 
+        //if name is empty, focus reset back to EditTextName
         if (name.isEmpty()) {
             editTextName.setError("Name required");
             editTextName.requestFocus();

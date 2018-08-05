@@ -24,16 +24,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //initializing views
         mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
         mMainNav = (BottomNavigationView) findViewById(R.id.main_nav);
 
+        //inistialising Frame
         homeFragment = new HomeFragment();
         storeFragment = new StoreFragment();
         postFragment = new PostFragment();
         accountFragment = new AccountFragment();
 
+        //setting the default fragment
         setFragment(homeFragment);
 
+        //setting onClickListener for nav bar
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -61,16 +65,17 @@ public class MainActivity extends AppCompatActivity {
 
                     default:
                         return false;
-                }
+                }//end of switch case
 
             }
         });
-    }
+    }//end of onCreate method
 
     private void setFragment(Fragment fragment) {
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
-    }
-}
+    }//what setFragment does
+
+}//end of MainActivity class

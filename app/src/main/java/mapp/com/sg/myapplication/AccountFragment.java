@@ -48,10 +48,11 @@ public class AccountFragment extends Fragment implements NameDialog.NameDialogLi
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
-
+        //Initializing database
         databaseReference = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+
         //initializing views
         btnSignOut = (Button) view.findViewById(R.id.btnSignout);
         btnChangeName = (Button) view.findViewById(R.id.btnChangeName);
@@ -82,8 +83,9 @@ public class AccountFragment extends Fragment implements NameDialog.NameDialogLi
 
         return view;
 
-    }
+    }//End of onCreate method
 
+    //when Opening the Dialog, and setting the value, this fragment will be changed
     public void openDialog() {
         Log.d(TAG, "onClick: opening dialog to change name");
         NameDialog nameDialog = new NameDialog();
@@ -91,6 +93,7 @@ public class AccountFragment extends Fragment implements NameDialog.NameDialogLi
         nameDialog.setTargetFragment(AccountFragment.this, 1);
     }
 
+    //When user is signing out
     private void setupFirebaseListener() {
         Log.d(TAG, "setupFirebaseListener: setting up the auth state listener");
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -112,6 +115,7 @@ public class AccountFragment extends Fragment implements NameDialog.NameDialogLi
     }//end of setupFirebaseListener method
 
 
+    //onStart, retrieve the name from firebase and set it to TextView
     @Override
     public void onStart() {
         super.onStart();
@@ -142,6 +146,7 @@ public class AccountFragment extends Fragment implements NameDialog.NameDialogLi
         }
     }
 
+    //apply name to textViewName
     @Override
     public void applyTexts(String name) {
         Log.d(TAG, "applyTexts: setting the name");

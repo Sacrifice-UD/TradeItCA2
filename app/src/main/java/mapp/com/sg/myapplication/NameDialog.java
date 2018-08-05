@@ -49,6 +49,7 @@ public class NameDialog extends AppCompatDialogFragment {
         editTextName = view.findViewById(R.id.editTextEditName);
         editTextAge = view.findViewById(R.id.editTextEditAge);
 
+        //When user presses the Cancel and OK button
         builder.setView(view)
                 .setTitle("Change Information")
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -86,11 +87,11 @@ public class NameDialog extends AppCompatDialogFragment {
             + "must implement NameDialogListener");
         }
         super.onAttach(context);
-    }
+    }//end of onAttach
 
     public interface NameDialogListener{
         void applyTexts(String name);
-    }
+    }//end of NDL
 
     private void changeName() {
 
@@ -110,6 +111,5 @@ public class NameDialog extends AppCompatDialogFragment {
         databaseReference.child(getString(R.string.node_users))
                 .child(user.getUid())
                 .setValue(userinformation);
-    }
-
-}
+    }//end of changeName method
+}//end of NameDialog Class
