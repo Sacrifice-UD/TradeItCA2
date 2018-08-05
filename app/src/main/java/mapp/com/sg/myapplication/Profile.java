@@ -106,7 +106,9 @@ public class Profile extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        databaseReference.child(user.getUid()).setValue(userinformation);
+                        databaseReference
+                                .child(getString(R.string.node_users))
+                                .child(user.getUid()).setValue(userinformation);
                         Toast.makeText(Profile.this, "Profile Updated", Toast.LENGTH_SHORT).show();
                         //Pressing back wont go back to this screen
                         finish();

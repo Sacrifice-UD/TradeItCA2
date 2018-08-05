@@ -10,4 +10,12 @@
 		android:layout_height="wrap_content"
 		android:hint="Enter Your Name"/>
 
+	<EditText
+		android:id="@+id/editTextEditAge"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/editTextEditName"
+		android:layout_centerHorizontal="true"
+		android:hint="Enter Your Age" />
+
 </RelativeLayout>

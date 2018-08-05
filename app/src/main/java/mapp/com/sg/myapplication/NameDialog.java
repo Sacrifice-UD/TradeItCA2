@@ -7,18 +7,23 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+
+import static android.content.ContentValues.TAG;
 
 public class NameDialog extends AppCompatDialogFragment {
 
-    EditText editTextName;
+    EditText editTextName, editTextAge;
     NameDialogListener listener;
     FirebaseAuth mAuth;
     DatabaseReference databaseReference;
@@ -42,6 +47,7 @@ public class NameDialog extends AppCompatDialogFragment {
 
         //initializing Views
         editTextName = view.findViewById(R.id.editTextEditName);
+        editTextAge = view.findViewById(R.id.editTextEditAge);
 
         builder.setView(view)
                 .setTitle("Change Information")
@@ -94,13 +100,16 @@ public class NameDialog extends AppCompatDialogFragment {
 
         //get the name from the editTextName and age from userinformation method
         String name = editTextName.getText().toString();
-        String age = userinformation.getAge();
+        String age = editTextAge.getText().toString();
 
         //set the name and age
         userinformation.setName(name);
         userinformation.setAge(age);
 
         //store in firebase
-        databaseReference.child(user.getUid()).setValue(userinformation);
+        databaseReference.child(getString(R.string.node_users))
+                .child(user.getUid())
+                .setValue(userinformation);
     }
+
 }

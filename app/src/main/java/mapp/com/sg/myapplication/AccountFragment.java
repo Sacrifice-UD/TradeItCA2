@@ -1,7 +1,6 @@
 package mapp.com.sg.myapplication;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,18 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import org.w3c.dom.Text;
-
-import java.util.jar.Attributes;
+import com.google.firebase.database.ValueEventListener;
 
 import static android.support.constraint.Constraints.TAG;
 
@@ -51,13 +48,14 @@ public class AccountFragment extends Fragment implements NameDialog.NameDialogLi
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         //initializing views
         btnSignOut = (Button) view.findViewById(R.id.btnSignout);
         btnChangeName = (Button) view.findViewById(R.id.btnChangeName);
         textViewName = (TextView) view.findViewById(R.id.textViewName);
-
 
 
         //Signing out
@@ -118,8 +116,22 @@ public class AccountFragment extends Fragment implements NameDialog.NameDialogLi
     public void onStart() {
         super.onStart();
         FirebaseAuth.getInstance().addAuthStateListener(mAuthListener);
-        String name = userinformation.getName();
-        textViewName.setText(user.getDisplayName());
+        DatabaseReference nameref;
+        nameref = FirebaseDatabase.getInstance().getReference();
+        nameref.child(getString(R.string.node_users))
+                .child(user.getUid())
+                .child("name")
+                .addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                textViewName.setText((String) dataSnapshot.getValue());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "Database Error: " + databaseError);
+            }
+        });
     }
 
     @Override
@@ -135,6 +147,5 @@ public class AccountFragment extends Fragment implements NameDialog.NameDialogLi
         Log.d(TAG, "applyTexts: setting the name");
         textViewName.setText(name);
     }
-
 
 }
