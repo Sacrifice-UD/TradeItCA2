@@ -39,7 +39,6 @@ public class Profile extends AppCompatActivity {
 
         //initializing firebase authentication object
         mAuth = FirebaseAuth.getInstance();
-
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
         //Initializing views

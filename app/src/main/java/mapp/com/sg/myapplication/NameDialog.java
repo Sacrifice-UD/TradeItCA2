@@ -20,9 +20,17 @@ public class NameDialog extends AppCompatDialogFragment {
 
     EditText editTextName;
     NameDialogListener listener;
+    FirebaseAuth mAuth;
+    DatabaseReference databaseReference;
+
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+        //initializing firebase authentication
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+
         //AlertDialog Builder
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -48,12 +56,12 @@ public class NameDialog extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialog, int i) {
                         String name = editTextName.getText().toString();
 
-
                         if (name.isEmpty()) {
                             editTextName.setError("Name required");
                             editTextName.requestFocus();
                             return;
                         }
+                        changeName();
                         listener.applyTexts(name);
                     }
                 });
@@ -76,5 +84,23 @@ public class NameDialog extends AppCompatDialogFragment {
 
     public interface NameDialogListener{
         void applyTexts(String name);
+    }
+
+    private void changeName() {
+
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        userInformation userinformation = new userInformation();
+
+        //get the name from the editTextName and age from userinformation method
+        String name = editTextName.getText().toString();
+        String age = userinformation.getAge();
+
+        //set the name and age
+        userinformation.setName(name);
+        userinformation.setAge(age);
+
+        //store in firebase
+        databaseReference.child(user.getUid()).setValue(userinformation);
     }
 }

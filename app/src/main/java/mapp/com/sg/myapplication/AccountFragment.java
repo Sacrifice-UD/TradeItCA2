@@ -30,7 +30,7 @@ import static android.support.constraint.Constraints.TAG;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AccountFragment extends Fragment implements NameDialog.NameDialogListener{
+public class AccountFragment extends Fragment implements NameDialog.NameDialogListener {
 
 
     Button btnChangePassword, btnChangeName, btnSignOut;
@@ -39,6 +39,7 @@ public class AccountFragment extends Fragment implements NameDialog.NameDialogLi
     FirebaseAuth.AuthStateListener mAuthListener;
     FirebaseAuth mAuth;
     FirebaseUser user;
+    userInformation userinformation = new userInformation();
 
     public AccountFragment() {
         // Required empty public constructor
@@ -53,11 +54,11 @@ public class AccountFragment extends Fragment implements NameDialog.NameDialogLi
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         //initializing views
-        btnSignOut= (Button) view.findViewById(R.id.btnSignout);
+        btnSignOut = (Button) view.findViewById(R.id.btnSignout);
         btnChangeName = (Button) view.findViewById(R.id.btnChangeName);
         textViewName = (TextView) view.findViewById(R.id.textViewName);
 
-        textViewName.setText(user.getDisplayName());
+
 
         //Signing out
         setupFirebaseListener();
@@ -80,7 +81,9 @@ public class AccountFragment extends Fragment implements NameDialog.NameDialogLi
                 FirebaseAuth.getInstance().signOut();
             }
         });
+
         return view;
+
     }
 
     public void openDialog() {
@@ -96,7 +99,7 @@ public class AccountFragment extends Fragment implements NameDialog.NameDialogLi
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if(user != null) {
+                if (user != null) {
                     Log.d(TAG, "onAuthStateChanged: signed_in:" + user.getUid());
                 } else {
                     Log.d(TAG, "onAuthStateChanged: signed_out");
@@ -111,23 +114,18 @@ public class AccountFragment extends Fragment implements NameDialog.NameDialogLi
     }//end of setupFirebaseListener method
 
 
-    private void changeName() {
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        mAuth.getCurrentUser();
-        databaseReference.child(user.getUid()).setValue(userInformation.class);
-    }
-
-
     @Override
     public void onStart() {
         super.onStart();
         FirebaseAuth.getInstance().addAuthStateListener(mAuthListener);
+        String name = userinformation.getName();
+        textViewName.setText(user.getDisplayName());
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if(mAuthListener != null) {
+        if (mAuthListener != null) {
             FirebaseAuth.getInstance().removeAuthStateListener(mAuthListener);
         }
     }
@@ -137,4 +135,6 @@ public class AccountFragment extends Fragment implements NameDialog.NameDialogLi
         Log.d(TAG, "applyTexts: setting the name");
         textViewName.setText(name);
     }
+
+
 }
