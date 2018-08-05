@@ -30,7 +30,7 @@ import static android.support.constraint.Constraints.TAG;
 public class AccountFragment extends Fragment implements NameDialog.NameDialogListener {
 
 
-    Button btnChangePassword, btnChangeName, btnSignOut;
+    Button btnChangeName, btnSignOut;
     TextView textViewName;
     DatabaseReference databaseReference;
     FirebaseAuth.AuthStateListener mAuthListener;
@@ -48,7 +48,7 @@ public class AccountFragment extends Fragment implements NameDialog.NameDialogLi
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
-        //Initializing database
+        //Initializing databse
         databaseReference = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
