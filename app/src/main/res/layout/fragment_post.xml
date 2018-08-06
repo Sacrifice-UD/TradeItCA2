@@ -103,7 +103,6 @@
 							android:id="@+id/input_for"
 							android:layout_centerVertical="true"
 							android:background="@null"
-							android:inputType="numberDecimal"
 							android:hint="For"
 							android:textColor="@color/Black"/>
 
@@ -171,7 +170,7 @@
 							android:layout_centerVertical="true"
 							android:layout_marginLeft="10dp"
 							android:background="@null"
-							android:inputType="textCapWords"
+							android:inputType="phone"
 							android:hint="Phone Number"
 							android:textColor="@color/Black"/>
 

@@ -66,7 +66,6 @@ public class SelectPhotoDialog extends DialogFragment {
         super.onActivityResult(requestCode, resultCode, data);
 
          //Results when selecting a new image from memory
-
         if(requestCode == PICKFILE_REQUEST_CODE && resultCode == Activity.RESULT_OK){
             Uri selectedImageUri = data.getData();
             Log.d(TAG, "onActivityResult: image uri: " + selectedImageUri);
@@ -77,7 +76,6 @@ public class SelectPhotoDialog extends DialogFragment {
         }
 
         //Results when taking a new photo with camera
-
         else if(requestCode == CAMERA_REQUEST_CODE && resultCode == Activity.RESULT_OK){
             Log.d(TAG, "onActivityResult: done taking new photo");
             Bitmap bitmap;

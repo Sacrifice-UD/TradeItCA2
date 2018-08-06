@@ -28,6 +28,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -103,23 +105,24 @@ public class PostFragment extends Fragment implements SelectPhotoDialog.OnPhotoS
 
     private void init() {
 
+        // Create global configuration and initialize ImageLoader with this config
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getContext()).build();
+        ImageLoader.getInstance().init(config);
+
         mPostImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: opening dialog to choose new photo");
-
                 SelectPhotoDialog dialog = new SelectPhotoDialog();
                 dialog.show(getFragmentManager(), getString(R.string.dialog_select_photo));
                 dialog.setTargetFragment(PostFragment.this, 1);
             }
         });
 
-
         mPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: attempting to post...");
-                //make sure all the fields are not empty before posting it
                 if (!isEmpty(mTitle.getText().toString())
                         && !isEmpty(mDescription.getText().toString())
                         && !isEmpty(mFor.getText().toString())
@@ -135,20 +138,25 @@ public class PostFragment extends Fragment implements SelectPhotoDialog.OnPhotoS
                     //we have no bitmap and a uri
                     else if (mSelectedBitmap == null && mSelectedUri != null) {
                         uploadNewPhoto(mSelectedUri);
-                    }//end of nested if-else statement
+                    }
                 } else {
                     Toast.makeText(getActivity(), "You must fill out all the fields", Toast.LENGTH_SHORT).show();
-                }//end of if-else statement
+                }
             }
-        });//end of onClick listener
-    }//end of init method
+        });
+    }
 
     private void uploadNewPhoto(Bitmap bitmap) {
-
+        Log.d(TAG, "uploadNewPhoto: uploading a new image bitmap to storage");
+        BackgroundImageResize resize = new BackgroundImageResize(bitmap);
+        Uri uri = null;
+        resize.execute(uri);
     }
 
     private void uploadNewPhoto(Uri imagePath) {
-
+        Log.d(TAG, "uploadNewPhoto: uploading a new image uri to storage.");
+        BackgroundImageResize resize = new BackgroundImageResize(null);
+        resize.execute(imagePath);
     }
 
     //resizing the image/compressing the image
@@ -198,6 +206,7 @@ public class PostFragment extends Fragment implements SelectPhotoDialog.OnPhotoS
             mUploadBytes = bytes;
             hideProgressBar();
             //execute the upload task
+            executeuploadTask();
         }
     }
 
@@ -242,20 +251,20 @@ public class PostFragment extends Fragment implements SelectPhotoDialog.OnPhotoS
                 resetFields();
 
             }
-        //on Failure
+            //on Failure
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getActivity(), "could not upload photo", Toast.LENGTH_SHORT).show();
             }
-        //on Progress
+            //on Progress
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                 //show the progress on how much % is completed
                 double currentProgress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
                 //this limits the amount being printed out
-                if( currentProgress > (mProgress + 15)){
+                if (currentProgress > (mProgress + 15)) {
                     mProgress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
                     Log.d(TAG, "onProgress: upload is " + mProgress + "& done");
                     Toast.makeText(getActivity(), mProgress + "%", Toast.LENGTH_SHORT).show();
@@ -267,7 +276,7 @@ public class PostFragment extends Fragment implements SelectPhotoDialog.OnPhotoS
     //convert and compress to the quality
     public static byte[] getBytesFromBitmap(Bitmap bitmap, int quality) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, quality,stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, quality, stream);
         return stream.toByteArray();
     }
 
