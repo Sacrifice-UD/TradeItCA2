@@ -145,14 +145,14 @@ public class PostFragment extends Fragment implements SelectPhotoDialog.OnPhotoS
             }
         });
     }
-
+    //upload bitmap to storage
     private void uploadNewPhoto(Bitmap bitmap) {
         Log.d(TAG, "uploadNewPhoto: uploading a new image bitmap to storage");
         BackgroundImageResize resize = new BackgroundImageResize(bitmap);
         Uri uri = null;
         resize.execute(uri);
     }
-
+    //upload uri to storage
     private void uploadNewPhoto(Uri imagePath) {
         Log.d(TAG, "uploadNewPhoto: uploading a new image uri to storage.");
         BackgroundImageResize resize = new BackgroundImageResize(null);
