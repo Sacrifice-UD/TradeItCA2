@@ -3,5 +3,6 @@
 	<string name="title_activity_register">RegisterActivity</string>
 	<string name="hello_blank_fragment">Hello blank fragment</string>
 	<string name="node_users">UserInfo</string>
+	<string name="node_posts">posts</string>
 	<string name="dialog_select_photo">SelectPhoto</string>
 </resources>

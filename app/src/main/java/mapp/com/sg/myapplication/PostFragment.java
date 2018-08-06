@@ -223,6 +223,24 @@ public class PostFragment extends Fragment implements SelectPhotoDialog.OnPhotoS
                 Log.d(TAG, "onSuccess: firebase download url: " + firebaseUri.toString());
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
+                Post post = new Post();
+                post.setImage(firebaseUri.toString());
+                post.setPhone(mPhone.getText().toString());
+                post.setContact_email(mContactEmail.getText().toString());
+                post.setCountry(mContactEmail.getText().toString());
+                post.setDescription(mDescription.getText().toString());
+                post.setPost_id(postId);
+                post.setTrade(mFor.getText().toString());
+                post.setState_province(mStateProvince.getText().toString());
+                post.setTitle(mTitle.getText().toString());
+                post.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+                reference.child(getString(R.string.node_posts))
+                        .child(postId)
+                        .setValue(post);
+
+                resetFields();
+
             }
         //on Failure
         }).addOnFailureListener(new OnFailureListener() {
