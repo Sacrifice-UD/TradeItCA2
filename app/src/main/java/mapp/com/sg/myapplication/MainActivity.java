@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
 
-    private HomeFragment homeFragment;
     private StoreFragment storeFragment;
     private PostFragment postFragment;
     private AccountFragment accountFragment;
@@ -45,13 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(){
         //inistialising Frame
-        homeFragment = new HomeFragment();
         storeFragment = new StoreFragment();
         postFragment = new PostFragment();
         accountFragment = new AccountFragment();
 
         //setting the default fragment
-        setFragment(homeFragment);
+        setFragment(accountFragment);
 
         //setting onClickListener for nav bar
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -59,23 +57,18 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
 
-                    case R.id.nav_home:
-                        mMainNav.setItemBackgroundResource(R.color.colorPrimary);
-                        setFragment(homeFragment);
-                        return true;
-
                     case R.id.nav_store:
-                        mMainNav.setItemBackgroundResource(R.color.colorPrimaryDark);
+                        mMainNav.setItemBackgroundResource(R.color.colorPrimary);
                         setFragment(storeFragment);
                         return true;
 
                     case R.id.nav_notif:
-                        mMainNav.setItemBackgroundResource(R.color.colorAccent);
+                        mMainNav.setItemBackgroundResource(R.color.colorPrimary);
                         setFragment(postFragment);
                         return true;
 
                     case R.id.nav_account:
-                        mMainNav.setItemBackgroundResource(R.color.silver);
+                        mMainNav.setItemBackgroundResource(R.color.colorPrimary);
                         setFragment(accountFragment);
                         return true;
 

@@ -6,20 +6,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDialogFragment;
-import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-
-import static android.content.ContentValues.TAG;
 
 public class NameDialog extends AppCompatDialogFragment {
 
@@ -62,12 +56,8 @@ public class NameDialog extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         String name = editTextName.getText().toString();
+                        String age = editTextAge.getText().toString();
 
-                        if (name.isEmpty()) {
-                            editTextName.setError("Name required");
-                            editTextName.requestFocus();
-                            return;
-                        }
                         changeName();
                         listener.applyTexts(name);
                     }
@@ -84,12 +74,12 @@ public class NameDialog extends AppCompatDialogFragment {
             listener = (NameDialogListener) getTargetFragment();
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
-            + "must implement NameDialogListener");
+                    + "must implement NameDialogListener");
         }
         super.onAttach(context);
     }//end of onAttach
 
-    public interface NameDialogListener{
+    public interface NameDialogListener {
         void applyTexts(String name);
     }//end of NDL
 
@@ -102,6 +92,7 @@ public class NameDialog extends AppCompatDialogFragment {
         //get the name from the editTextName and age from userinformation method
         String name = editTextName.getText().toString();
         String age = editTextAge.getText().toString();
+
 
         //set the name and age
         userinformation.setName(name);

@@ -15,186 +15,187 @@
 			>
 
 			<RelativeLayout
+				android:id="@+id/relLayout1"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:id="@+id/relLayout1"
+				android:layout_alignParentStart="true"
+				android:layout_alignParentTop="true"
 				android:background="@color/lightGray">
 
 
 				<ImageView
+					android:id="@+id/post_image"
 					android:layout_width="100dp"
 					android:layout_height="100dp"
-					android:id="@+id/post_image"
-					android:layout_marginTop="15dp"
 					android:layout_centerHorizontal="true"
+					android:layout_marginTop="15dp"
 					android:scaleType="centerCrop"
-					android:src="@drawable/ic_image_black_24dp"/>
+					android:src="@drawable/ic_image_black_24dp" />
 
 
 				<RelativeLayout
+					android:id="@+id/relLayout2"
 					android:layout_width="match_parent"
 					android:layout_height="60dp"
 					android:layout_below="@+id/post_image"
-					android:id="@+id/relLayout2"
 					android:layout_marginTop="30dp"
 					android:background="@color/White">
 
 
 					<EditText
+						android:id="@+id/input_title"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:id="@+id/input_title"
 						android:layout_centerVertical="true"
 						android:layout_marginLeft="10dp"
 						android:background="@null"
-						android:maxLines="2"
 						android:hint="Title"
-						android:textColor="@color/Black"
-						android:padding="10dp"/>
+						android:maxLines="2"
+						android:padding="10dp"
+						android:textColor="@color/Black" />
 
 				</RelativeLayout>
 
 
 				<RelativeLayout
+					android:id="@+id/relLayout9"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_below="@+id/relLayout2"
-					android:id="@+id/relLayout9">
+					android:layout_below="@+id/relLayout2">
 
 
 					<RelativeLayout
+						android:id="@+id/relLayout3"
 						android:layout_width="match_parent"
 						android:layout_height="150dp"
-						android:background="@android:color/white"
-						android:id="@+id/relLayout3"
 						android:layout_marginTop="10dp"
+						android:background="@android:color/white"
 						android:padding="10dp">
 
 
 						<EditText
+							android:id="@+id/input_description"
 							android:layout_width="match_parent"
 							android:layout_height="100dp"
-							android:id="@+id/input_description"
 							android:layout_centerVertical="true"
-							android:maxLines="20"
 							android:background="@null"
+							android:gravity="start"
 							android:hint="Description"
-							android:textColor="@android:color/black"
-							android:gravity="start"/>
+							android:maxLines="20"
+							android:textColor="@android:color/black" />
 
 
 					</RelativeLayout>
 
 
-
 					<RelativeLayout
+						android:id="@+id/relLayout4"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_below="@+id/relLayout3"
+						android:layout_marginTop="10dp"
 						android:background="@color/White"
-						android:id="@+id/relLayout4"
-						android:padding="10dp"
-						android:layout_marginTop="10dp">
+						android:padding="10dp">
 
 
 						<EditText
+							android:id="@+id/input_for"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
-							android:id="@+id/input_for"
 							android:layout_centerVertical="true"
 							android:background="@null"
 							android:hint="For"
-							android:textColor="@color/Black"/>
+							android:textColor="@color/Black" />
 
 					</RelativeLayout>
 
 					<RelativeLayout
+						android:id="@+id/relLayout5"
 						android:layout_width="match_parent"
 						android:layout_height="50dp"
 						android:layout_below="@+id/relLayout4"
+						android:layout_marginTop="10dp"
 						android:background="@color/White"
-						android:id="@+id/relLayout5"
-						android:padding="10dp"
-						android:layout_marginTop="10dp">
+						android:padding="10dp">
 
 
 						<EditText
+							android:id="@+id/input_country"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
-							android:id="@+id/input_country"
 							android:layout_centerVertical="true"
 							android:layout_marginLeft="10dp"
 							android:background="@null"
-							android:inputType="textCapWords"
 							android:hint="Country"
-							android:textColor="@color/Black"/>
+							android:inputType="textCapWords"
+							android:textColor="@color/Black" />
 
 					</RelativeLayout>
 
 					<RelativeLayout
+						android:id="@+id/relLayout6"
 						android:layout_width="match_parent"
 						android:layout_height="50dp"
 						android:layout_below="@+id/relLayout5"
 						android:background="@color/White"
-						android:id="@+id/relLayout6"
 						android:padding="10dp">
 
 
 						<EditText
+							android:id="@+id/input_state_province"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
-							android:id="@+id/input_state_province"
 							android:layout_centerVertical="true"
 							android:layout_marginLeft="10dp"
 							android:background="@null"
-							android:inputType="textCapWords"
 							android:hint="State/Province/Region"
-							android:textColor="@color/Black"/>
+							android:inputType="textCapWords"
+							android:textColor="@color/White" />
 
 					</RelativeLayout>
 
 					<RelativeLayout
+						android:id="@+id/relLayout7"
 						android:layout_width="match_parent"
 						android:layout_height="50dp"
 						android:layout_below="@+id/relLayout6"
-						android:background="@color/White"
-						android:id="@+id/relLayout7"
 						android:layout_marginTop="10dp"
+						android:background="@color/White"
 						android:padding="10dp">
 
 
 						<EditText
+							android:id="@+id/input_phone"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
-							android:id="@+id/input_phone"
 							android:layout_centerVertical="true"
 							android:layout_marginLeft="10dp"
 							android:background="@null"
-							android:inputType="phone"
 							android:hint="Phone Number"
-							android:textColor="@color/Black"/>
+							android:inputType="phone"
+							android:textColor="@color/Black" />
 
 					</RelativeLayout>
 
 					<RelativeLayout
+						android:id="@+id/relLayout8"
 						android:layout_width="match_parent"
 						android:layout_height="50dp"
 						android:layout_below="@+id/relLayout7"
 						android:background="@color/White"
-						android:id="@+id/relLayout8"
 						android:padding="10dp">
 
 
 						<EditText
+							android:id="@+id/input_email"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
-							android:id="@+id/input_email"
 							android:layout_centerVertical="true"
 							android:layout_marginLeft="10dp"
 							android:background="@null"
-							android:inputType="textEmailAddress"
 							android:hint="Your contact email"
-							android:textColor="@color/Black"/>
+							android:inputType="textEmailAddress"
+							android:textColor="@color/Black" />
 
 					</RelativeLayout>
 
@@ -202,18 +203,21 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_below="@+id/relLayout8"
-						android:background="@color/White"
-						android:layout_marginTop="10dp">
+						android:layout_marginTop="10dp"
+						android:background="@color/White">
 
 						<Button
 							android:id="@+id/btn_post"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							android:layout_marginTop="35dp"
+							android:layout_centerHorizontal="true"
 							android:layout_marginBottom="35dp"
-							android:text="post"
-							android:background="@color/gray"
-							android:layout_centerHorizontal="true"/>
+							android:layout_marginTop="35dp"
+							android:background="@color/colorPrimary"
+							android:textColor="@color/White"
+							android:textStyle="bold"
+							android:textSize="16sp"
+							android:text="post" />
 					</RelativeLayout>
 
 				</RelativeLayout>
