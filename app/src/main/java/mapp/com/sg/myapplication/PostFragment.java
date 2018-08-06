@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +19,16 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
@@ -29,6 +40,7 @@ import static android.content.ContentValues.TAG;
  */
 public class PostFragment extends Fragment implements SelectPhotoDialog.OnPhotoSelectedListener {
 
+
     //widgets
     private ImageView mPostImage;
     private EditText mTitle, mDescription, mFor, mCountry, mStateProvince, mPhone, mContactEmail;
@@ -39,6 +51,7 @@ public class PostFragment extends Fragment implements SelectPhotoDialog.OnPhotoS
     private Bitmap mSelectedBitmap;
     private Uri mSelectedUri;
     private byte[] mUploadBytes;
+    private double mProgress = 0;
 
     public PostFragment() {
         // Required empty public constructor
@@ -171,7 +184,10 @@ public class PostFragment extends Fragment implements SelectPhotoDialog.OnPhotoS
                 }
             }
             byte[] bytes = null;
+            //check compression
+            Log.d(TAG, "doInBackground: megabytes before compression " + mBitmap.getByteCount() / 1000000);
             bytes = getBytesFromBitmap(mBitmap, 100);
+            Log.d(TAG, "doInBackground: megabytes after compression " + bytes.length / 1000000);
             return bytes;
 
         }
@@ -183,6 +199,51 @@ public class PostFragment extends Fragment implements SelectPhotoDialog.OnPhotoS
             hideProgressBar();
             //execute the upload task
         }
+    }
+
+    private void executeuploadTask() {
+        Toast.makeText(getActivity(), "Uploading Image..", Toast.LENGTH_SHORT).show();
+
+        final String postId = FirebaseDatabase.getInstance().getReference().push().getKey();
+        final StorageReference storageReference = FirebaseStorage.getInstance().getReference()
+                .child("posts/users/" + FirebaseAuth.getInstance().getCurrentUser().getUid() +
+                        "/" + postId + "/post_image");
+
+        //upload the file
+        UploadTask uploadTask = storageReference.putBytes(mUploadBytes);
+        //on Successful
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(getActivity(), "Post Success", Toast.LENGTH_SHORT).show();
+
+                //insert the download url into the firebase database
+                Uri firebaseUri = taskSnapshot.getDownloadUrl();
+
+                Log.d(TAG, "onSuccess: firebase download url: " + firebaseUri.toString());
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+            }
+        //on Failure
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity(), "could not upload photo", Toast.LENGTH_SHORT).show();
+            }
+        //on Progress
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                //show the progress on how much % is completed
+                double currentProgress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                //this limits the amount being printed out
+                if( currentProgress > (mProgress + 15)){
+                    mProgress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                    Log.d(TAG, "onProgress: upload is " + mProgress + "& done");
+                    Toast.makeText(getActivity(), mProgress + "%", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     //convert and compress to the quality
