@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private StoreFragment storeFragment;
     private PostFragment postFragment;
     private AccountFragment accountFragment;
+    private WatchlistFragment watchlistFragment;
 
     private static final int REQUEST_CODE = 123;
 
@@ -47,15 +48,19 @@ public class MainActivity extends AppCompatActivity {
         storeFragment = new StoreFragment();
         postFragment = new PostFragment();
         accountFragment = new AccountFragment();
+        watchlistFragment = new WatchlistFragment();
 
         //setting the default fragment
-        setFragment(accountFragment);
+        setFragment(watchlistFragment);
 
         //setting onClickListener for nav bar
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.nav_watchlist:
+                        mMainNav.setItemBackgroundResource(R.color.colorPrimary);
+                        setFragment(watchlistFragment);
 
                     case R.id.nav_store:
                         mMainNav.setItemBackgroundResource(R.color.colorPrimary);
