@@ -89,7 +89,9 @@
 				android:paddingRight="20dp"
 				android:text="Login"
 				android:textColor="@android:color/white"
-				android:textStyle="normal" />
+				android:textStyle="normal"
+				android:background="@color/colorPrimary"
+				/>
 
 			<TextView
 				android:id="@+id/textViewSignup"
