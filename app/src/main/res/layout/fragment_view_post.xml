@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@color/lightGray">
+
+
+                <ImageView
+                    android:id="@+id/view_post_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_image_black_24dp" />
+
+
+                <RelativeLayout
+                    android:id="@+id/relLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/view_post_image"
+                    android:layout_marginTop="30dp"
+                    android:background="@color/White">
+
+
+                    <TextView
+                        android:id="@+id/view_post_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:background="@null"
+                        android:hint="Title"
+                        android:maxLines="2"
+                        android:padding="10dp"
+                        android:textColor="@color/Black" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/relLayout9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/relLayout2">
+
+
+                    <RelativeLayout
+                        android:id="@+id/relLayout3"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:color/white"
+                        android:padding="10dp">
+
+
+                        <TextView
+                            android:id="@+id/view_post_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_centerVertical="true"
+                            android:background="@null"
+                            android:gravity="start"
+                            android:hint="Description"
+                            android:maxLines="20"
+                            android:textColor="@android:color/black" />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/relLayout4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/relLayout3"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/White"
+                        android:padding="10dp">
+
+
+                        <TextView
+                            android:id="@+id/view_post_for"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:background="@null"
+                            android:hint="For"
+                            android:textColor="@color/Black" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relLayout5"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/relLayout4"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/White"
+                        android:padding="10dp">
+
+
+                        <TextView
+                            android:id="@+id/view_post_country"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:background="@null"
+                            android:hint="Country"
+                            android:inputType="textCapWords"
+                            android:textColor="@color/Black" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relLayout6"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/relLayout5"
+                        android:background="@color/White"
+                        android:padding="10dp">
+
+
+                        <TextView
+                            android:id="@+id/view_post_state_province"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:background="@null"
+                            android:hint="State/Province/Region"
+                            android:inputType="textCapWords"
+                            android:textColor="@color/White" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relLayout7"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/relLayout6"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/White"
+                        android:padding="10dp">
+
+
+                        <TextView
+                            android:id="@+id/view_post_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:background="@null"
+                            android:hint="Phone Number"
+                            android:inputType="phone"
+                            android:textColor="@color/Black" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relLayout8"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/relLayout7"
+                        android:background="@color/White"
+                        android:padding="10dp">
+
+
+                        <TextView
+                            android:id="@+id/view_post_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:background="@null"
+                            android:hint="Your contact email"
+                            android:inputType="textEmailAddress"
+                            android:textColor="@color/Black" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/relLayout8"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/White">
+
+                        <!--NEED TO ADD CONTACT BUTTON-->
+                        
+                        <!--NEED TO ADD ADD TO WATCHLIST BUTTON-->
+
+                        <!--<Button-->
+                            <!--android:id="@+id/btn_post"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_centerHorizontal="true"-->
+                            <!--android:layout_marginBottom="35dp"-->
+                            <!--android:layout_marginTop="35dp"-->
+                            <!--android:background="@color/colorPrimary"-->
+                            <!--android:textColor="@color/White"-->
+                            <!--android:textStyle="bold"-->
+                            <!--android:textSize="16sp"-->
+                            <!--android:text="post" />-->
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <ProgressBar
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/progressBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:visibility="invisible"/>
+
+</RelativeLayout>
