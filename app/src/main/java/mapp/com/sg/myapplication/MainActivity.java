@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_watchlist:
                         mMainNav.setItemBackgroundResource(R.color.colorPrimary);
                         setFragment(watchlistFragment);
+                        return true;
 
                     case R.id.nav_store:
                         mMainNav.setItemBackgroundResource(R.color.colorPrimary);
