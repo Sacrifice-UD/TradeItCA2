@@ -1,5 +1,7 @@
 package mapp.com.sg.myapplication;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 public class PostInformation {
     private String contact_email;
     private String country;
