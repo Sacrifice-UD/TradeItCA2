@@ -72,12 +72,29 @@ public class StoreFragment extends Fragment {
         }
     }
 
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        mTitle.clear();
+//        mImage.clear();
+//    }
+
+
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        mTitle.clear();
+//        mImage.clear();
+//    }
+
     private void initImageBitmaps() {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference().child("posts");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                mTitle.clear();
+                mImage.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     mTitle.add(snapshot.child("title").getValue(String.class));
                     mImage.add(snapshot.child("image").getValue(String.class));
@@ -89,6 +106,8 @@ public class StoreFragment extends Fragment {
 
             }
         });
+
     }
+
 
 }
