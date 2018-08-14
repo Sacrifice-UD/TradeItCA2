@@ -1,5 +1,6 @@
 package mapp.com.sg.myapplication;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,21 +24,27 @@ import java.util.ArrayList;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
 //    debug
     private static final String TAG = "RecyclerViewAdapter";
-
+    //vars
     private ArrayList<String> mImageNames;
     private ArrayList<String> mImages;
+    private ArrayList<String> mId;
     private Context mContext;
 
-    public RecyclerViewAdapter(Context context, ArrayList<String> imageNames, ArrayList<String> images ) {
+    //widgets
+    private FrameLayout mFrameLayout;
+
+    public RecyclerViewAdapter(Context context, ArrayList<String> imageNames, ArrayList<String> images, ArrayList<String> id ) {
         mImageNames = imageNames;
         mImages = images;
         mContext = context;
+        mId = id;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent, false);
         ViewHolder holder = new ViewHolder(view);
+        mFrameLayout = (FrameLayout) view.findViewById(R.id.container);
         return holder;
     }
 
@@ -54,12 +62,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on " +mImageNames.get(position));
+                Toast.makeText(mContext, "You clicked on:" + mImageNames.get(position),
+                        Toast.LENGTH_LONG).show();
+
+//                add intent here to send  to the post detail
+                Intent intent = new Intent(mContext, ViewPostFragment.class);
+                intent.putExtra("mId", mId.get(position));
+                mContext.startActivity(intent);
             }
         });
 
     }
-
     @Override
     public int getItemCount() {
         return mImageNames.size();

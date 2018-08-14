@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private PostFragment postFragment;
     private AccountFragment accountFragment;
     private WatchlistFragment watchlistFragment;
+    private ViewPostFragment viewPostFragment;
 
     private static final int REQUEST_CODE = 123;
 
@@ -44,11 +45,12 @@ public class MainActivity extends AppCompatActivity {
     }//end of onCreate method
 
     private void setupViewPager(){
-        //inistialising Frame
+        //initialising Frame
         storeFragment = new StoreFragment();
         postFragment = new PostFragment();
         accountFragment = new AccountFragment();
         watchlistFragment = new WatchlistFragment();
+        viewPostFragment = new ViewPostFragment();
 
         //setting the default fragment
         setFragment(watchlistFragment);
