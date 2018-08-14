@@ -23,8 +23,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 //    debug
     private static final String TAG = "RecyclerViewAdapter";
 
-    private ArrayList<String> mImageNames = new ArrayList<>();
-    private ArrayList<String> mImages = new ArrayList<>();
+    private ArrayList<String> mImageNames;
+    private ArrayList<String> mImages;
     private Context mContext;
 
     public RecyclerViewAdapter(Context context, ArrayList<String> imageNames, ArrayList<String> images ) {
