@@ -33,9 +33,10 @@ public class ViewPostFragment extends AppCompatActivity {
     //widgets
     private TextView mContactEmail, mCountry, mDescription, mPhone, mStateProvince, mTitle, mTrade;
     private ImageView back, mImage;
+    private Button contactBtn;
 
     //vars
-    private String Image, PostId;
+    private String Image, PostId, contactEmail;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
 
@@ -80,11 +81,21 @@ public class ViewPostFragment extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Add firebase here
                 addItemToWatchList();
-
                 Snackbar.make(view, "Added to watchlist", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+
+        //for contact email button
+        contactBtn = findViewById(R.id.btn_contact);
+        contactBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.setType("plain/text");
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {contactEmail});
+                startActivity(emailIntent);
             }
         });
     }
@@ -120,7 +131,8 @@ public class ViewPostFragment extends AppCompatActivity {
                 mPhone.setText(dataSnapshot.child("phone").getValue(String.class));
                 mDescription.setText(dataSnapshot.child("description").getValue(String.class));
                 mCountry.setText(dataSnapshot.child("country").getValue(String.class));
-                mContactEmail.setText(dataSnapshot.child("contact_email").getValue(String.class));
+                contactEmail = dataSnapshot.child("contact_email").getValue(String.class);
+                mContactEmail.setText(contactEmail);
                 Image = dataSnapshot.child("image").getValue(String.class);
 
                 Glide.with(ViewPostFragment.this)

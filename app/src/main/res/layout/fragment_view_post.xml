@@ -210,28 +210,26 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/relLayout8"
                         android:layout_marginTop="10dp"
                         android:background="@color/White">
 
-                        <!--NEED TO ADD CONTACT BUTTON-->
-
-                        <!--NEED TO ADD ADD TO WATCHLIST BUTTON-->
-
-                        <!--<Button-->
-                            <!--android:id="@+id/btn_post"-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_centerHorizontal="true"-->
-                            <!--android:layout_marginBottom="35dp"-->
-                            <!--android:layout_marginTop="35dp"-->
-                            <!--android:background="@color/colorPrimary"-->
-                            <!--android:textColor="@color/White"-->
-                            <!--android:textStyle="bold"-->
-                            <!--android:textSize="16sp"-->
-                            <!--android:text="post" />-->
+                        <Button
+                        android:id="@+id/btn_contact"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="35dp"
+                        android:layout_marginTop="35dp"
+                        android:background="@color/colorPrimary"
+                            android:textColor="@color/White"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:text="Contact Seller"
+                            android:padding="10dp"/>
                     </RelativeLayout>
 
                 </RelativeLayout>
