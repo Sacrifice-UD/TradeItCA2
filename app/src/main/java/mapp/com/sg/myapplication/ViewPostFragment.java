@@ -1,36 +1,126 @@
 package mapp.com.sg.myapplication;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class ViewPostFragment extends Fragment {
+import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+public class ViewPostFragment extends AppCompatActivity {
 
     //widgets
-    private TextView mContactSeller, mTitle, mDescription, mPrice, mLocation, mSavePost;
-//    private ImageView mClose, mWatchList, mPostImage;
+    private TextView mContactEmail, mCountry, mDescription, mPhone, mStateProvince, mTitle, mTrade;
+    private ImageView back, mImage;
 
     //vars
-    private String ContactEmail, Country, Description, Image, mPhone, StateProvince, Title, Trade, PostId;
-    private Post mPost;
+    private String Image, PostId;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        PostId = getActivity().getIntent().getExtras().getString("mId");
-        mTitle.setText(PostId);
+        setContentView(R.layout.fragment_view_post);
+        Toast.makeText(this, "You are on fragment_view_post" + Image, Toast.LENGTH_LONG).show();
+        getIncomingIntent();
+        back = findViewById(R.id.backButton);
+        init();
+        loadData();
+
+//        mTitle.setText("hello");
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_view_post, container, false);
-        return view;
+    private void getIncomingIntent() {
+        if(getIntent().hasExtra("mId")){
+            PostId = getIntent().getStringExtra("mId");
+        }
     }
+
+    private void setImage(String mId){
+        TextView title = findViewById(R.id.view_post_title);
+        title.setText(mId);
+    }
+
+    private void init (){
+        back.setClickable(true);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ViewPostFragment.this, "testing" + PostId, Toast.LENGTH_LONG).show();
+                finish();
+            }
+        });
+    }
+
+    private void loadData(){
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference().child("posts").child(PostId);
+
+        mContactEmail = findViewById(R.id.view_post_email);
+        mCountry = findViewById(R.id.view_post_country);
+        mDescription = findViewById(R.id.view_post_description);
+        mPhone = findViewById(R.id.view_post_phone);
+        mStateProvince = findViewById(R.id.view_post_state_province);
+        mTitle = findViewById(R.id.view_post_title);
+        mTrade = findViewById(R.id.view_post_for);
+        mImage = findViewById(R.id.view_post_image);
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mTitle.setText(dataSnapshot.child("title").getValue(String.class));
+                mTrade.setText(dataSnapshot.child("trade").getValue(String.class));
+                mStateProvince.setText(dataSnapshot.child("state_province").getValue(String.class));
+                mPhone.setText(dataSnapshot.child("phone").getValue(String.class));
+                mDescription.setText(dataSnapshot.child("description").getValue(String.class));
+                mCountry.setText(dataSnapshot.child("country").getValue(String.class));
+                mContactEmail.setText(dataSnapshot.child("contact_email").getValue(String.class));
+                Image = dataSnapshot.child("image").getValue(String.class);
+
+                Glide.with(ViewPostFragment.this)
+                        .asBitmap()
+                        .load(Image)
+                        .into(mImage);
+                Toast.makeText(ViewPostFragment.this, ""+Image, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+//        myRef.addListenerForSingleValueEvent(postListener);
+
+//      set the data
+//        mTitle.setText(Title);
+//        mContactEmail.setText(ContactEmail);
+//        mCountry.setText(Country);
+//        mDescription.setText(Description);
+//        mImage.setText(Image);
+//        mPhone.setText(Phone);
+//        mStateProvince.setText(StateProvince);
+//        mTrade.setText(Trade);
+    }
+
+
 
 }

@@ -1,9 +1,11 @@
 package mapp.com.sg.myapplication;
 
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
 import android.util.Log;
@@ -62,17 +64,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "You clicked on:" + mImageNames.get(position),
-                        Toast.LENGTH_LONG).show();
+//                Toast.makeText(mContext, "You clicked on:" + mImageNames.get(position),
+//                        Toast.LENGTH_LONG).show();
 
 //                add intent here to send  to the post detail
-                Intent intent = new Intent(mContext, ViewPostFragment.class);
+//                Intent intent = new Intent(mContext, ViewPostFragment.class);
+
+//                mContext.startActivity(intent);
+                Intent intent = new Intent(mContext,ViewPostFragment.class);
                 intent.putExtra("mId", mId.get(position));
                 mContext.startActivity(intent);
             }
         });
 
     }
+
+
     @Override
     public int getItemCount() {
         return mImageNames.size();

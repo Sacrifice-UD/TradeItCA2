@@ -97,9 +97,11 @@ public class StoreFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mTitle.clear();
                 mImage.clear();
+                mId.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     mTitle.add(snapshot.child("title").getValue(String.class));
                     mImage.add(snapshot.child("image").getValue(String.class));
+                    mId.add(snapshot.child("post_id").getValue(String.class));
                 }
             }
 
