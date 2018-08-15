@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,6 +39,8 @@ public class ViewPostFragment extends AppCompatActivity {
     private String Image, PostId;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
+    private DatabaseReference watchlistRef;
+    FirebaseAuth mAuth;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,6 +67,9 @@ public class ViewPostFragment extends AppCompatActivity {
     }
 
     private void init (){
+        //firebase authentication
+        mAuth = FirebaseAuth.getInstance();
+        final FirebaseUser user = mAuth.getCurrentUser();
 
         // for upbutton
         back.setClickable(true);
@@ -80,15 +86,21 @@ public class ViewPostFragment extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Add intent here
-//                myRef.child("watchlist").
-
-
-
+                addItemToWatchList();
                 Snackbar.make(view, "Added to watchlist", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    private void addItemToWatchList() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+        reference.child(getString(R.string.node_watch_list))
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child(PostId)
+                .child(getString(R.string.field_post_id))
+                .setValue(PostId);
     }
 
     private void loadData(){
