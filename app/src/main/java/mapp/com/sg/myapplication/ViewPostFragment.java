@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,11 +19,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class ViewPostFragment extends AppCompatActivity {
 
@@ -59,12 +64,29 @@ public class ViewPostFragment extends AppCompatActivity {
     }
 
     private void init (){
+
+        // for upbutton
         back.setClickable(true);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ViewPostFragment.this, "testing" + PostId, Toast.LENGTH_LONG).show();
                 finish();
+            }
+        });
+
+        //for floating action btn
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Add intent here
+//                myRef.child("watchlist").
+
+
+
+                Snackbar.make(view, "Added to watchlist", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
     }
