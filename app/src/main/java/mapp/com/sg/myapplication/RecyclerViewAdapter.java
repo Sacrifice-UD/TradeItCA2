@@ -30,16 +30,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> mImageNames;
     private ArrayList<String> mImages;
     private ArrayList<String> mId;
+    private ArrayList<String> mForTitle;
     private Context mContext;
 
     //widgets
     private FrameLayout mFrameLayout;
 
-    public RecyclerViewAdapter(Context context, ArrayList<String> imageNames, ArrayList<String> images, ArrayList<String> id ) {
+    public RecyclerViewAdapter(Context context, ArrayList<String> imageNames, ArrayList<String> images, ArrayList<String> id,
+                               ArrayList<String> forTitle) {
         mImageNames = imageNames;
         mImages = images;
         mContext = context;
         mId = id;
+        mForTitle = forTitle;
     }
 
     @Override
@@ -59,6 +62,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .into(holder.image);
 
         holder.imageName.setText(mImageNames.get(position));
+        holder.forTitle.setText(mForTitle.get(position));
 
         //add onclick listener
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
@@ -88,9 +92,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public class ViewHolder extends RecyclerView.ViewHolder{
         SquareImageView image;
         TextView imageName;
+        TextView forTitle;
         RelativeLayout parentLayout;
         public ViewHolder(View itemView) {
             super(itemView);
+            forTitle = itemView.findViewById(R.id.forTitle);
             image = itemView.findViewById(R.id.image);
             imageName = itemView.findViewById(R.id.image_name);
             parentLayout = itemView.findViewById(R.id.parent_layout);

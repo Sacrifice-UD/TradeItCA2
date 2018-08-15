@@ -38,6 +38,7 @@ public class StoreFragment extends Fragment {
     private ArrayList<String> mTitle = new ArrayList<>();
     private ArrayList<String> mImage = new ArrayList<>();
     private ArrayList<String> mId = new ArrayList<>();
+    private ArrayList<String> mForTitle = new ArrayList<>();
 
     public StoreFragment() {
         // Required empty public constructor
@@ -58,7 +59,7 @@ public class StoreFragment extends Fragment {
         // get reference
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         // create adapter
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter (this.getContext(),mTitle,mImage, mId);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter (this.getContext(),mTitle,mImage, mId, mForTitle);
         //set adapter
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -71,23 +72,10 @@ public class StoreFragment extends Fragment {
             mTitle.add(snapshot.child("title").getValue(String.class));
             mImage.add(snapshot.child("image").getValue(String.class));
             mId.add(snapshot.child("post_id").getValue(String.class));
+            mForTitle.add(snapshot.child("trade").getValue(String.class));
         }
     }
 
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        mTitle.clear();
-//        mImage.clear();
-//    }
-
-
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        mTitle.clear();
-//        mImage.clear();
-//    }
 
     private void initImageBitmaps() {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -102,6 +90,7 @@ public class StoreFragment extends Fragment {
                     mTitle.add(snapshot.child("title").getValue(String.class));
                     mImage.add(snapshot.child("image").getValue(String.class));
                     mId.add(snapshot.child("post_id").getValue(String.class));
+                    mForTitle.add(snapshot.child("trade").getValue(String.class));
                 }
             }
 

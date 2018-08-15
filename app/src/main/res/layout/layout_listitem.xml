@@ -9,16 +9,52 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:id="@+id/image"
-        android:src="@mipmap/ic_launcher"/>e
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/have"
+        android:text="Have:"
+        android:layout_toRightOf="@+id/image"
+        android:textColor="#000"
+        android:layout_marginLeft="13dp"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="God Of War"
         android:id="@+id/image_name"
+        android:layout_toEndOf="@+id/have"
         android:layout_toRightOf="@+id/image"
         android:textColor="#000"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="17sp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/forText"
+        android:text="For:   "
+        android:layout_toRightOf="@+id/image"
+        android:textColor="#000"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="40dp"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dummytext"
+        android:layout_toEndOf="@id/forText"
+        android:layout_toRightOf="@+id/image"
+        android:id="@+id/forTitle"
+        android:textColor="#000"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="40dp"
         android:textSize="17sp"
         />
 
