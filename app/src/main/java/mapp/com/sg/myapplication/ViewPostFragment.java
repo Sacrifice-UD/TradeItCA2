@@ -44,7 +44,6 @@ public class ViewPostFragment extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_view_post);
-        Toast.makeText(this, "You are on fragment_view_post" + Image, Toast.LENGTH_LONG).show();
         getIncomingIntent();
         back = findViewById(R.id.backButton);
         init();
@@ -71,7 +70,6 @@ public class ViewPostFragment extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ViewPostFragment.this, "testing" + PostId, Toast.LENGTH_LONG).show();
                 finish();
             }
         });
@@ -139,7 +137,6 @@ public class ViewPostFragment extends AppCompatActivity {
                         .asBitmap()
                         .load(Image)
                         .into(mImage);
-                Toast.makeText(ViewPostFragment.this, ""+Image, Toast.LENGTH_SHORT).show();
             }
 
             @Override

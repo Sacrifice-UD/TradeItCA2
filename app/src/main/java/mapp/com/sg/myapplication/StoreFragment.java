@@ -39,7 +39,7 @@ public class StoreFragment extends Fragment {
     private ArrayList<String> mImage = new ArrayList<>();
     private ArrayList<String> mId = new ArrayList<>();
     private ArrayList<String> mForTitle = new ArrayList<>();
-
+    private static final String TAG = "StoreFragment";
     public StoreFragment() {
         // Required empty public constructor
         initImageBitmaps();
@@ -63,7 +63,6 @@ public class StoreFragment extends Fragment {
         //set adapter
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        Toast.makeText(getActivity(),"Array size:" + mTitle.size(), Toast.LENGTH_LONG).show();
         return view;
     }
 
@@ -86,6 +85,7 @@ public class StoreFragment extends Fragment {
                 mTitle.clear();
                 mImage.clear();
                 mId.clear();
+                mForTitle.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     mTitle.add(snapshot.child("title").getValue(String.class));
                     mImage.add(snapshot.child("image").getValue(String.class));

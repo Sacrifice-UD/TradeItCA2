@@ -68,13 +68,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(mContext, "You clicked on:" + mImageNames.get(position),
-//                        Toast.LENGTH_LONG).show();
-
-//                add intent here to send  to the post detail
-//                Intent intent = new Intent(mContext, ViewPostFragment.class);
-
-//                mContext.startActivity(intent);
                 Intent intent = new Intent(mContext,ViewPostFragment.class);
                 intent.putExtra("mId", mId.get(position));
                 mContext.startActivity(intent);
