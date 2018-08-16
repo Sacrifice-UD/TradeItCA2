@@ -44,8 +44,6 @@ public class WatchlistFragment extends Fragment {
 
     public WatchlistFragment() {
         // Required empty public constructor
-//        clear();
-//        initImageBitmaps();
     }
 
     @Override
@@ -76,30 +74,6 @@ public class WatchlistFragment extends Fragment {
 
 
         mReference.addValueEventListener(mListener);
-//       ******************
-//        mFirebaseDatabase = FirebaseDatabase.getInstance();
-//        mAuth = FirebaseAuth.getInstance();
-//        final FirebaseUser user = mAuth.getCurrentUser();
-//
-//        if(mPostId != null){
-//            clear();
-//        }
-//
-//        myRef = mFirebaseDatabase.getReference().child("watch_list").child(user.getUid());
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    mPostId.add(snapshot.child("post_id").getValue(String.class));
-//                }
-//                addToArray();
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
     }
 
     private void setupPostList() {
@@ -190,52 +164,5 @@ public class WatchlistFragment extends Fragment {
 
         }
     };
-//    private void getPosts() {
-//        if(mPostId.size() > 0 ){
-//            DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-//            String id;
-//            for (int i = 0; i < mPostId.size(); i++){
-//                id = mPostId.get(i);
-//                ref = (DatabaseReference) reference.child("posts")
-//                        .orderByKey()
-//                        .equalTo(id);
-//
-//                ref.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        DataSnapshot singleSnapshot = dataSnapshot.getChildren().iterator().next();
-//                        mImage.add(singleSnapshot.getValue());
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(DatabaseError databaseError) {
-//
-//                    }
-//                });
-//            }
-//        }
-//    }
-
-//    private void addToArray(){
-//
-//        ref = mFirebaseDatabase.getReference().child("posts");
-//        for (int i = 0; i < mPostId.size(); i++){
-//            final String postId = mPostId.get(i);
-//            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(DataSnapshot dataSnapshot) {
-//                    mTitle.add(dataSnapshot.child(postId).child("title").getValue(String.class));
-//                    mImage.add(dataSnapshot.child(postId).child("image").getValue(String.class));
-//                    mForTitle.add(dataSnapshot.child(postId).child("trade").getValue(String.class));
-//                    mId.add(dataSnapshot.child(postId).child("post_id").getValue(String.class));
-//                }
-//
-//                @Override
-//                public void onCancelled(DatabaseError databaseError) {
-//
-//                }
-//            });
-//        }
-//    }
 
 }
