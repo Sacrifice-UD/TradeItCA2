@@ -48,8 +48,6 @@ public class ViewPostFragment extends AppCompatActivity {
         back = findViewById(R.id.backButton);
         init();
         loadData();
-
-//        mTitle.setText("hello");
     }
 
     private void getIncomingIntent() {

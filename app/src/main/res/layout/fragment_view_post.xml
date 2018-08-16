@@ -58,16 +58,23 @@
                     android:layout_below="@+id/view_post_image"
                     android:background="@color/White">
 
-
+                    <TextView
+                        android:id="@+id/txtTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/Black"
+                        android:padding="10dp"
+                        android:text="I have:"
+                        android:textStyle="bold"/>
                     <TextView
                         android:id="@+id/view_post_title"
+                        android:layout_toEndOf="@+id/txtTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
                         android:background="@null"
                         android:maxLines="2"
-                        android:padding="10dp"
                         android:textColor="@color/Black" />
 
                 </RelativeLayout>
@@ -88,9 +95,16 @@
                         android:background="@android:color/white"
                         android:padding="10dp">
 
-
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txtDesc"
+                            android:textColor="@color/Black"
+                            android:text="Description:"
+                            android:textStyle="bold"/>
                         <TextView
                             android:id="@+id/view_post_description"
+                            android:layout_marginTop="50dp"
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
                             android:layout_centerVertical="true"
@@ -112,9 +126,17 @@
                         android:background="@color/White"
                         android:padding="10dp">
 
-
+                        <TextView
+                            android:id="@+id/txtWant"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="I want:"
+                            android:textStyle="bold"
+                            android:textColor="@color/Black"/>
                         <TextView
                             android:id="@+id/view_post_for"
+                            android:layout_toEndOf="@+id/txtWant"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -134,6 +156,16 @@
 
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Country:"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/Black"
+                            android:textStyle="bold"
+                            android:id="@+id/txtCountry"/>
+                        <TextView
+                            android:layout_toRightOf="@+id/txtCountry"
                             android:id="@+id/view_post_country"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -177,11 +209,21 @@
 
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Phone:"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:textColor="@color/Black"
+                            android:textStyle="bold"
+                            android:id="@+id/txtPhone"/>
+                        <TextView
+                            android:layout_toRightOf="@+id/txtPhone"
                             android:id="@+id/view_post_phone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
                             android:background="@null"
                             android:inputType="phone"
                             android:textColor="@color/Black" />
@@ -196,13 +238,22 @@
                         android:background="@color/White"
                         android:padding="10dp">
 
-
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Email:"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:textColor="@color/Black"
+                            android:textStyle="bold"
+                            android:id="@+id/txtEmail"/>
+                        <TextView
+                            android:layout_toRightOf="@+id/txtEmail"
                             android:id="@+id/view_post_email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
                             android:background="@null"
                             android:inputType="textEmailAddress"
                             android:textColor="@color/Black" />
