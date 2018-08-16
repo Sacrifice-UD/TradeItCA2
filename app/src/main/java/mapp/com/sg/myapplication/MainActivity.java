@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         viewPostFragment = new ViewPostFragment();
 
         //setting the default fragment
-        setFragment(storeFragment);
+        setFragment(accountFragment);
 
         //setting onClickListener for nav bar
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
